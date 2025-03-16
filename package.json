@@ -1,0 +1,29 @@
+{
+  "name": "@rbxts/roblox-observers",
+  "version": "1.0.0",
+  "description": "Observers to help simplify some specific event handling.",
+  "main": "out/init.lua",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "CriShoux",
+  "license": "ISC",
+  "type": "commonjs",
+  "types": "out/index.d.ts",
+  "files": [
+    "out",
+    "!**/*.tsbuildinfo"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rbxts/compiler-types": "^3.0.0-types.0",
+    "@rbxts/types": "^1.0.841",
+    "roblox-ts": "^3.0.0",
+    "typescript": "^5.8.2"
+  }
+}
