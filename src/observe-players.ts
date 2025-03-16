@@ -1,6 +1,6 @@
 const Players = game.GetService('Players');
 
-export function observePlayers(callback: (player: Player) => (() => void) | undefined): () => void {
+export function observePlayers(callback: (player: Player) => (() => void) | void) {
     const cleanFuncs = new Map<Player, () => void>();
 
     for (const player of Players.GetPlayers()) {

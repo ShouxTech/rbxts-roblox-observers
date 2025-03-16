@@ -1,4 +1,4 @@
-export function observeChildren(instance: Instance, callback: (child: Instance) => (() => void) | undefined): () => void {
+export function observeChildren(instance: Instance, callback: (child: Instance) => (() => void) | void) {
     const cleanFuncs = new Map<Instance, () => void>();
 
     for (const child of instance.GetChildren()) {

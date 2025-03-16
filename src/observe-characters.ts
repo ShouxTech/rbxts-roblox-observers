@@ -1,8 +1,8 @@
 import { observePlayers } from './observe-players';
 
-export function observeCharacters(callback: (char: Model, player: Player) => (() => void) | undefined): () => void {
+export function observeCharacters(callback: (char: Model, player: Player) => (() => void) | void) {
     const stopObservingPlayers = observePlayers((player: Player) => {
-        let cleanFunc: (() => void) | undefined;
+        let cleanFunc: (() => void) | void;
 
         if (player.Character) {
             task.spawn(() => {

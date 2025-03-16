@@ -1,6 +1,6 @@
 import { State } from './state';
 
-export function observeState<T>(state: State<T>, callback: (value: T) => void): () => void {
+export function observeState<T>(state: State<T>, callback: (value: T) => void) {
     task.spawn(callback, state.get());
 
     state._observers.add(callback);
