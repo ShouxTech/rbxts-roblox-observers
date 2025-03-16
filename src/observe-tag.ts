@@ -4,7 +4,7 @@ type InstanceStatus = '__inflight__' | '__dead__';
 
 type CleanupFunction = () => void;
 
-export function observeTag<T extends Instance>(tag: string, callback: (instance: T) => CleanupFunction | void, ancestors: Instance[] | undefined) {
+export function observeTag<T extends Instance>(tag: string, callback: (instance: T) => CleanupFunction | void, ancestors?: Instance[]) {
     const instances = new Map<Instance, InstanceStatus | CleanupFunction>();
     const ancestryConn = new Map<Instance, RBXScriptConnection>();
 

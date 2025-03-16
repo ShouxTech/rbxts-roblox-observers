@@ -12,7 +12,7 @@ export function observeCharacters(callback: (char: Model, player: Player) => (()
 
         let characterRemovingConnection: RBXScriptConnection | undefined;
         const characterAddedConnection = player.CharacterAdded.Connect((char: Model) => {
-            characterRemovingConnection = char.AncestryChanged.Connect((_, parent: Instance | undefined) => {
+            characterRemovingConnection = char.AncestryChanged.Connect((_, parent?: Instance) => {
                 if (parent) return;
 
                 characterRemovingConnection?.Disconnect();
