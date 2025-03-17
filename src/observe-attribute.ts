@@ -1,8 +1,8 @@
-export function observeAttribute<T extends AttributeValue>(instance: Instance, attribute: string, callback: (value: T | undefined) => void) {
-    task.spawn(callback, instance.GetAttribute(attribute) as T | undefined);
+export function observeAttribute(instance: Instance, attribute: string, callback: (value: AttributeValue | undefined) => void) {
+    task.spawn(callback, instance.GetAttribute(attribute));
 
     const connection = instance.GetAttributeChangedSignal(attribute).Connect(() => {
-        task.spawn(callback, instance.GetAttribute(attribute) as T | undefined);
+        task.spawn(callback, instance.GetAttribute(attribute));
     });
 
     return () => {
