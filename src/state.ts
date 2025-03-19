@@ -4,16 +4,18 @@ export interface State<T> {
     _observers: Set<(value: T) => void>;
 }
 
-export function state<T>(initialValue: T): State<T> {
+export function state<T>(initialValue: T): State<T>;
+export function state<T>(): State<T | undefined>;
+export function state<T>(initialValue?: T): State<T | undefined> {
     let value = initialValue;
 
-    const observers = new Set<(value: T) => void>();
+    const observers = new Set<(value: T | undefined) => void>();
 
     return {
         get() {
             return value;
         },
-        set(newValue: T) {
+        set(newValue: T | undefined) {
             if (newValue === value) return;
 
             value = newValue;
