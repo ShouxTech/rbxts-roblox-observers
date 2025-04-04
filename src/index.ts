@@ -7,13 +7,13 @@ import { observeChildren } from "./observe-children";
 import { observeTag } from "./observe-tag";
 import { observeProperty } from "./observe-property";
 
-export {
-    state,
-    observeState,
-    observePlayers,
-    observeCharacters,
-    observeAttribute,
-    observeChildren,
-    observeTag,
-    observeProperty,
-};
+export class Observers {
+    static state = state;
+    static observeState = observeState;
+    static observePlayers = observePlayers;
+    static observeCharacters = observeCharacters;
+    static observeAttribute = observeAttribute;
+    static observeChildren = observeChildren;
+    static observeTag = observeTag;
+    static observeProperty = observeProperty;
+}

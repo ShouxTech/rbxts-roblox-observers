@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/roblox-observers",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Observers to help simplify some specific event handling.",
   "main": "out/init.lua",
   "scripts": {
