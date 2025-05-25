@@ -1,11 +1,22 @@
-export function observeAttribute<T extends AttributeValue>(instance: Instance, attribute: string, callback: (value: T | undefined) => void) {
-    task.spawn(callback, instance.GetAttribute(attribute) as T | undefined);
+export function observeAttribute<T extends AttributeValue>(instance: Instance, attribute: string, callback: (value: T | undefined) => (() => void) | void) {
+    let cleanup: (() => void) | void;
 
-    const connection = instance.GetAttributeChangedSignal(attribute).Connect(() => {
-        task.spawn(callback, instance.GetAttribute(attribute) as T | undefined);
-    });
+    function runCallback() {
+        if (cleanup) {
+            task.spawn(cleanup);
+        }
+        cleanup = callback(instance.GetAttribute(attribute) as T | undefined);
+    }
+
+    task.spawn(runCallback);
+
+    const connection = instance.GetAttributeChangedSignal(attribute).Connect(runCallback);
 
     return () => {
+        if (cleanup) {
+            task.spawn(cleanup);
+            cleanup = undefined;
+        }
         connection.Disconnect();
     };
 }
